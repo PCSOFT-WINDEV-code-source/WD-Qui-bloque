@@ -1,0 +1,430 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : Procedures_globales
+ major_version : 28
+ minor_version : 0
+ type : 7
+ description : ""
+ subtype : 0
+procedure_set :
+ identifier : 0x3ce143a36bf698f4
+ internal_properties : CAAAAAgAAABGLu41kG7fjQV3iS4F72qmnKaNh5694reolNKIW0iw
+ code_elements :
+  internal_properties : CAAAAAgAAAD4KfU6aUlimOmqadIuEWhjqvKADgsOJm3E+xqBmo3BBWn4DL+XHpDjo+riYZG5+ph9agKa0TnnX35/yMbVMgAihD8MNv+U
+  type_code : 31
+  p_codes : []
+  procedures :
+   -
+     name : AvantMAJEnreg
+     internal_properties : CAAAAAgAAACcQMT+rEDvJNr+YZ5fOgeVMkCBO39c0PKHbda/QG8dPgV5ywazMV4JojdJKLxgdnsCf3QO+kBBOlT1lzLaTzq2SitszFYMFdfv2ZtQJF4QiXpAQchWxQuqqHqW9bMLyvp9qpYFL0k+6knr8mUPQdWh949hytKqQ8iXE+eoaXMrqF6gpH3Qew6bFMQnN7F2x2ON5x6G++3/IZODPs2RjGQ06FPf
+     procedure_id : 4386861880159213862
+     type_code : 15
+     code : |1+
+      Procédure AvantMAJEnreg()
+      
+      // Mémorisation de l'auteur de la MAJ de l'enregistrement ainsi que la date et l'heure
+      
+      // NB : Il est possible d'utiliser le mécanisme "qui bloque quoi ?" sans gérer de 'Time Stamp'
+      
+      quand exception 
+          // Ignore l'erreur si le fichier ne comporte pas
+      	// les rubriques nécessaires pour le 'Time Stamp'
+      	retour
+      fin
+      
+      {h.nomfichier+<§@3ce114b34f6e40840000§>,indRubrique} = Datedujour()
+      {h.nomfichier+<§@3ce114b34f6e40840001§>,indRubrique} = Maintenant()
+      {h.nomfichier+<§@3ce114b34f6e40840002§>,indRubrique} = reseauutilisateur()
+      
+     type : 458752
+   -
+     name : Bloque
+     internal_properties : CAAAAAgAAAD/qSS1rqieZ3noDVOm6yEgNIq/+b5X/BOVC49XkymObkaVhoPW4lhirUHyNjSOdv+LlxpyA3q0unBVJa3K69zGDrdP+fY8QkDMOBvTICMUDh1sDZfENp6ZbnRWzPG62A0EzvpoGzgba3t9DNDliMmMglHJuTKtXKEBZ6NtX1xvA3lC/NBcSOVaqownaq1bDF8hjFwJuYQ3yGKHHdXjkzW2ik4=
+     procedure_id : 4386861881008625958
+     type_code : 15
+     code : |1+
+      fonction Bloque(NomFichier,NuméroEnreg)
+      
+      // NB : Le fichier "VERROU" étant amené à subir de nombreux accès,
+      // le CR de blocage est testé même sur les fonctions HF non-bloquantes
+      // afin d'éviter d'éventuels 'accès concurrentiels inattendue
+      
+      bRésultat est un booleen		// Blocage réussi ou non
+      
+      // Tentative de blocage
+      hlit(NomFichier,NuméroEnreg,HBlocageEcriture)
+      // Test du compte-rendu
+      si HErreurBlocage() alors
+      	// Recherche du nom de l'utilisateur modifiant l'enregistrement en cours
+      	boucle
+      		HLitRecherche(VERROU,CLEUNIQUE,[NomFichier,NuméroEnreg])
+      		si HErreurBlocage() alors
+      			multitache(200) 	//	Ré-essai 2 s. plus tard
+      		sinon
+      			sortir
+      		FIN
+      	fin
+      	si HTrouve() alors
+      		// On signale à l'utilisateur qui bloque l'enregistrement et depuis quand
+      		Diff est une chaîne = DateHeureDifférence(VERROU.DATEDEBUT+VERROU.HEUREDEBUT,Datedujour()+Maintenant()[[1 à 6]])
+      		TxtAffiché est une chaine
+      		si val(Diff[[2 à 8]])>0 alors TxtAffiché += val(Diff[[2 à 8]])+" j. " // Jours  (même si improbable)
+      		si TxtAffiché~="" 	// < 1 jour => test si heures
+      			si val(Milieu(Diff,9,2))>0 alors TxtAffiché += Milieu(Diff,9,2)+<§@3ce114b34f6e40840003§> // Heures (possible ?)
+      		sinon				// > 1 jour => heures tjs affichés
+      			TxtAffiché += Milieu(Diff,9,2)+<§@3ce114b34f6e40840003§> // Heures (possible ?)		
+      		fin
+      		TxtAffiché +=  Milieu(Diff,11,2)+" ' " + Milieu(Diff,13,2) + " '' "
+      		si ouinon(non,<§@3ce114b34f6e40840004§>+VERROU.UTILISATEUR+<§@3ce114b34f6e40840005§>+TxtAffiché,...
+      			<§@3ce114b34f6e40840006§>,"",...
+      			<§@3ce114b34f6e40840007§>+VERROU.UTILISATEUR+<§@3ce114b34f6e40840008§>) alors
+      			// Saisie du message
+      			MsgàEnvoyer est une chaine 
+      			MsgàEnvoyer = ouvre(FEN_SaisieMessage,<§@3ce114b34f6e40840009§>+rc+<§@3ce114b34f6e4084000a§>,VERROU.UTILISATEUR)
+      			si MsgàEnvoyer<>"" alors
+      				// Message pour l'utilisateur en train de modifier l'enregistrement
+      				boucle
+      					HLitRecherche(VERROU,CLEUNIQUE,[NomFichier,NuméroEnreg])
+      					si HErreurBlocage() alors
+      						multitache(200) 	//	Ré-essai 2 s. plus tard
+      					sinon
+      						sortir
+      					FIN
+      				fin
+      				si HTrouve() alors
+      					// Mémorisation du flag testé par la procédure MsgBlocage()
+      					VERROU.ENVOIMSG = vrai
+      					VERROU.MSG = MsgàEnvoyer
+      					VERROU.AUTEURMSG = reseauutilisateur()
+      					boucle
+      						hmodifie(VERROU)
+      						si HErreurBlocage() alors
+      							multitache(200) 	//	Ré-essai 2 s. plus tard
+      						sinon
+      							sortir
+      						FIN
+      					fin
+      				FIN
+              	fin
+      		fin
+      	sinon
+      		// L'enregistrement a été bloqué par un autre mécanisme que celui proposé ici
+      		info(<§@3ce114b34f6e4084000b§>,...
+      		<§@3ce114b34f6e4084000c§>)
+      	fin
+      	bRésultat = faux
+      sinon
+      	// Recherche si le verrou a bien été enlevé lors du dernier blocage
+      	boucle
+      		HLitRecherche(VERROU,CLEUNIQUE,[NomFichier,NuméroEnreg])
+      		si HErreurBlocage() alors
+      			multitache(200) 	//	Ré-essai 2 s. plus tard
+      		sinon
+      			sortir
+      		FIN
+      	fin
+      	// Mémorisation du verrou avec le nom de l'utilisateur + quelques infos
+      	HRAZ(VERROU)
+      	VERROU.FICHIER = NomFichier
+      	VERROU.ENREG = NuméroEnreg
+      	VERROU.UTILISATEUR = reseauutilisateur()
+      	VERROU.DATEDEBUT = Datedujour()
+      	VERROU.HEUREDEBUT = Maintenant()
+      	si HTrouve() alors
+      		boucle
+      			hmodifie(VERROU)	// On écrase le verrou existant
+      			si HErreurBlocage() alors
+      				multitache(200) 	//	Ré-essai 2 s. plus tard
+      			sinon
+      				sortir
+      			FIN
+      		fin
+      	sinon
+      		boucle
+      			HAjoute(VERROU)	// On crée le verrou
+      			si HErreurBlocage() alors
+      				multitache(200) 	//	Ré-essai 2 s. plus tard
+      			sinon
+      				sortir
+      			FIN
+      		fin
+      	FIN
+      	HErreurDoublon() // Par sécurité : ce cas est improbable puisque la recherche sur clé unique vient d'être faîte.
+      	bRésultat = vrai
+      FIN
+      
+      renvoyer bRésultat
+     type : 458752
+   -
+     name : CtrlVerrou
+     procedure_id : 4386861880778004774
+     type_code : 15
+     code : |1+
+      Procédure CtrlVerrou()
+      // Cette procédure (appelée au démarrage de l'application)
+      // vérifie si aucune info concernant l'utilisateur en cours n'est restée mémorisée 
+      // dans le fichier "VERROU" alors que le déblocage a bien eu lieu (Fermeture anormale de l'application)
+      
+      // Recherche des infos de verrouillage concernant l'utilisateur en cours
+      HLitRecherche(VERROU,UTILISATEUR,reseauutilisateur())
+      tantque HTrouve()
+      	// Test si l'enregistrement est effectivement bloqué
+      	// (Possible si un autre utilisateur s'est connecté sous le même nom)
+      	hlit(VERROU.FICHIER,VERROU.ENREG,HBlocageEcriture)
+      	si pas HErreurBlocage() alors
+      		boucle
+      			HSupprime(VERROU)
+      			si HErreurBlocage() alors
+      				multitache(200) 	//	Ré-essai 2 s. plus tard
+      			sinon
+      				sortir
+      			FIN
+          	fin
+      	fin
+      	HLitSuivant(VERROU,UTILISATEUR)
+      FIN
+     type : 458752
+   -
+     name : Debloque
+     procedure_id : 4386861880656566566
+     type_code : 15
+     code : |1+
+      procedure Debloque(NomFichier,NuméroEnreg)
+      // NB : Le fichier "VERROU" étant amené à subir de nombreux accès,
+      // le CR de blocage est testé même sur les fonctions HF non-bloquantes
+      // afin d'éviter d'éventuels 'accès concurrentiels inattendus (Erreur HF 05)
+      
+      // Recherche du verrou au nom de l'utilisateur modifiant l'enregistrement en cours
+      boucle
+      	HLitRecherche(VERROU,CLEUNIQUE,[NomFichier,NuméroEnreg])
+      	si HErreurBlocage() alors
+      		multitache(200) 	//	Ré-essai 2 s. plus tard
+      	sinon
+      		sortir
+      	FIN
+      fin
+      si HTrouve() alors
+      	boucle
+      		hsupprime(VERROU)
+      		si HErreurBlocage() alors
+      			multitache(200) //	Ré-essai 2 s. plus tard
+      		sinon
+      			sortir
+      		FIN
+      	fin
+      fin
+      // Déblocage
+      boucle
+      	HDebloqueNumenr(NomFichier,NuméroEnreg)
+      	si HErreurBlocage() alors
+      		multitache(200) 	//	Ré-essai 2 s. plus tard
+      	sinon
+      		sortir
+      	FIN
+      fin
+      
+     type : 458752
+   -
+     name : LibelleFichier
+     procedure_id : 4386861881148414246
+     type_code : 15
+     code : |1+
+      fonction LibelleFichier(NomFichier)
+      
+      // Cette fonction va rechercher dans l'analyse le libellé du fichier demandé
+      // Exemple :
+      //				LibelleFichier("CLIENT") renvoie "Fichier Clients/Prospects"
+      
+      Lib est une chaine
+      ListeFichiers est une chaine = hlisteFichier(Vrai)
+      Cpt est un entier
+      boucle
+      	Cpt++	
+      	si ExtraitChaine(ListeFichiers,Cpt,rc)=eot alors sortir
+      	si ExtraitChaine(ExtraitChaine(ListeFichiers,Cpt,rc),1,tab)~=NomFichier alors
+      		Lib = ExtraitChaine(ExtraitChaine(ListeFichiers,Cpt,rc),3,tab)
+      		sortir
+      	FIN
+      FIN
+      
+      renvoyer Lib
+      
+     type : 458752
+   -
+     name : MsgBlocage
+     internal_properties : CAAAAAgAAAD58dgAqJGVNOnxPNBkiCcj+n9RRBsy67ijLxlTUF5mskY7bzkevxT7HbOdUjhUEME42lhR7aK28b4wZMCdY0Rn8leFiD+pEeE9g0RnmzFIu6KUJx1eVLBbBNoSCClyIN1wTnhqC8ADU3ODOPRDSoksKl/5CeI1RP2N54dBaxA0W8wWLNQMkjt4LNyKsKgCs5Zs6A==
+     procedure_id : 4386861880858089766
+     type_code : 15
+     code : |1+
+      Procédure MsgBlocage()
+      
+      // Cette procédure (appelée par Timer) affiche, si besoin, un message à l'utilisateur
+      // pour lui signaler qu'un autre utilisateur du réseau souhaite accéder à un enregistrement
+      // qu'il a bloqué
+      
+      sMsg est une chaine
+      IDVerrou est une chaine
+      
+      fintimersys(1)
+      
+      // Cas particulier : demande de déblocage forcée par l'administrateur
+      DéblocageForcé()
+      
+      // Recherche des verrous posés par l'utilisateur en cours
+      boucle
+      	HLitRecherche(VERROU,CLEMSG,[reseauutilisateur(),1])
+      	si pas HTrouve() alors sortir
+      	// On signale à l'utilisateur depuis quand il bloque l'enregistrement
+      	// et on lui demande de le libérer
+      	Diff est une chaîne = DateHeureDifférence(VERROU.DATEDEBUT+VERROU.HEUREDEBUT,Datedujour()+Maintenant()[[1 à 6]])
+      	TxtAffiché est une chaine
+      	si val(Diff[[2 à 8]])>0 alors TxtAffiché += val(Diff[[2 à 8]])+<§@3ce114b34f6e4084000d§> // Jours  (même si improbable)
+      	si TxtAffiché~="" 	// < 1 jour => test si heures
+      		si val(Milieu(Diff,9,2))>0 alors TxtAffiché += Milieu(Diff,9,2)+" h " // Heures (possible ?)
+      	sinon				// > 1 jour => heures toujours affichés
+      		TxtAffiché += Milieu(Diff,9,2)+" h " // Heures (possible ?)		
+      	fin
+      	TxtAffiché +=  Milieu(Diff,11,2)+" ' " + Milieu(Diff,13,2) + " '' "
+      sMsg = [
+      Vous avez bloqué l'enregistrement n° %1 du fichier '%2' depuis %3
+      Veuillez le libérer dès que possible afin que les autres utilisateurs du réseau puissent le modifier à leur tour.
+      
+      *** Message de %4 *** 
+      %5
+      
+      Cas Particulier : 
+      Si vous ne travaillez pas actuellement sur cet enregistrement, veuillez vous assurer que personne ne s'est connecté au réseau sous votre nom...
+      ]
+      sMsg = chaineconstruit(sMsg,Verrou.ENREG,LibelleFichier(verrou.fichier),TxtAffiché,verrou.AUTEURMSG,verrou.msg)
+      
+      IDVerrou=VERROU.CLEUNIQUE
+      	
+      	// Surveille le déblocage forcé par l'administrateur pendant l'affichage du message
+      	timersys(DéblocageForcé,500,3)
+      	info(sMsg)
+      	fintimersys(3)
+      	
+      	// Enlève le flag testé pour ne pas avoir le message à l'infini
+      	HLitRecherche(VERROU,CLEUNIQUE,IDVerrou)
+      	si HTrouve() alors
+      		VERROU.ENVOIMSG = faux
+      		VERROU.MSG = ""
+      		VERROU.AUTEURMSG = ""
+      		boucle
+      			hmodifie(VERROU)
+      			si HErreurBlocage() alors
+      				multitache(200) 	//	Ré-essai 2 s. plus tard
+      			sinon
+      				sortir
+      			FIN
+          	fin
+      	fin
+      FIN
+      
+      timersys(MsgBlocage,500,1)
+      
+     type : 458752
+   -
+     name : DéblocageForcé
+     procedure_id : 4387905316640039462
+     type_code : 15
+     code : |1+
+      Procédure DéblocageForcé()
+      
+      // Cas particulier : demande de déblocage forcé fait par l'administrateur
+      sMsg est une chaine
+      HLitRecherche(VERROU,CLEMSG,[reseauutilisateur(),9])
+      si HTrouve() alors
+      	// Suis-je concerné (où est-ce un autre utilisateur qui s'est connecté sous mon nom ?)
+      	hlit(VERROU.FICHIER,VERROU.ENREG,HBlocageEcriture)
+      	si pas HErreurBlocage() alors
+      		sMsg=VERROU.MSG
+      		CtrlVerrou()	// Suppression des informations de verrouillage correspondantes
+      		hferme("")		// Fermeture des fichiers (et donc déblocage !)
+      		titresuivant(<§@3ce114b34f6e40840017§>)
+      		FinProgramme(sMsg,Faux)
+      
+      		// *** VARIANTE POSSIBLE : A ADAPTER SELON VOTRE APPLICATION ***
+      		// Il est possible de se contenter de débloquer l'enregistrement par 'HDébloqueNumEnr'
+      		// et/ou de fermer la fiche de saisie de l'utilisateur par Ferme
+      		// sans forcer la fermeture de l'application.
+      		// Attention : si l'utilisateur revient en modification sur l'enregistrement, il sera nécessaire de :
+      		// 1 - Ré afficher l'enregistrement (valeurs saisies entre-temps par d'autres utilisateurs)
+      		// 2 - Ré-effectuer le blocage de l'enregistrement.
+      		// *************************************************************
+      
+      	fin
+      FIN
+     type : 458752
+  procedure_templates : []
+  property_templates : []
+ code_parameters :
+  internal_properties : CAAAAAgAAACVGQgYbalU7DKC3oH4ItDrjtcTHXXV/EuH8q0IbhyQlw==
+resources :
+ string_res :
+  identifier : 0x3ce114b34f6e4084
+  internal_properties : CAAAAAgAAACm76HWfKGWp33VjXInA4cRlqArlgTTA862QGt72W2ld5Y=
+  strings :
+   -
+     text :
+      fr-FR : .MODIFIE_LE
+     index : 0
+   -
+     text :
+      fr-FR : .MODIFIE_A
+     index : 1
+   -
+     text :
+      fr-FR : .MODIFIE_PAR
+     index : 2
+   -
+     text :
+      fr-FR : " h "
+     index : 3
+   -
+     text :
+      fr-FR : "Cet enregistrement est en cours de modification par "
+     index : 4
+   -
+     text :
+      fr-FR : " depuis "
+     index : 5
+   -
+     text :
+      fr-FR : Vous ne pouvez pas le modifier pour l'instant.
+     index : 6
+   -
+     text :
+      fr-FR : "Voulez-vous envoyer un message à "
+     index : 7
+   -
+     text :
+      fr-FR : " pour lui demander de libérer l'enregistrement ?"
+     index : 8
+   -
+     text :
+      fr-FR : Je souhaiterais modifier cet enregistrement.
+     index : 9
+   -
+     text :
+      fr-FR : Merci de le libérer rapidement.
+     index : 10
+   -
+     text :
+      fr-FR : Cet enregistrement est en cours de modification sur un autre poste du réseau.
+     index : 11
+   -
+     text :
+      fr-FR : Veuillez réessayer ultérieurement.
+     index : 12
+   -
+     text :
+      fr-FR : " j. "
+     index : 13
+   -
+     text :
+      fr-FR : Fermeture automatique de l'application.
+     index : 23
+custom_note :
+ internal_properties : CAAAAAgAAABtB9HWVzrXO2+4NDRVK0vmzaNKrCKqH1DBX30lMmGZ

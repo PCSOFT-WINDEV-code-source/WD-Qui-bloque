@@ -1,0 +1,182 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : WD Qui bloque
+ major_version : 28
+ minor_version : 0
+ type : 4097
+ description : WD Qui bloque
+ subtype : 0
+project :
+ identifier : 0x0
+ internal_properties : CAAAAAgAAACu3M5LRhmbSKV6s9mfRyTdc/ZQp0Q6KJy45OhEJlCRaFKOYfPEmVDQuoZZLzC1AKqe7ehBTZxcTZxb5Dnc4pYhHQFepfwZksI+Msfrk9OPNHobI7bjPnpfI0xHXMTLeak6EiDf3jCU4I8qTaMwDZZiuR4gSJkfBQnwqT4HzRaBRtySkG+dtEA81nq68k7koGEUovCTr9MFR03aMUG3Aq1LDLTeDcd3d20TObqnYzl9ensrMhRh2a6LQpPw2yGj+7mS1pnN8th4fWLHXe+UQYM8BFpq0wC8Ca9HcAr1uVFi+65yWkFnblyibV04LoK92eBmwyGxSrHZ4TJPc3uTKxR7qq+rpLy1Z6Cw0AjauUkA5x5SyyPmlSi4oQeSfd1ZKhXBuesXcrSTRlc1Q21qRM8PwYaxuIhuPCn55T6nlKnF/AFS2w7Z7yeLA8zoNKpp/LNEZruOlgsS8uXZuUUP3CpuJ3NwaCXmXGh+GKj4OCP9ZUBM/+6WzaWsCdbMMjFx2VlgMV0VP2QpeBPBqIU9PY4k0OzY8RzbnsMRHQY6ompavJHYMFyj8nc/iWQFnxT3QHlXJ8q/aK51VY2uqpjgxiZ7lSAMIzePl5uTg8QBzztkDtF5Vjkapg5lMvqcFw2m+6FQQlivkSfNoE1xOQ2dcqmLrKg1bfs9jLQ2aHUWCo7rABevnfVgIplOC53/zPTvXRmo/Ysc/M2EtdTLT/mhTGejQvK79fGfrNQQZ1fDmSiK/zOqcS6k1KOWcW3LAykyr4DN8gMoSh/5c08BRneXoI16twPHbypQwkfto+hTjVTRO9PLxchm60pV6JvjNslhgvK6A0Gn4hv/sgWW91hkhyOvdiP2HFCoJ+pWjrYwfD6urZ8ierBze4tFkuuhtHsTvVlQQEA6XNEm6WD+Z/LnJ67ciI5xGatgq0hM7qVQCdom9ZbKcd8ikvZXvAr3mZyY6Q/NwRhPuIO2c+jNoNAZyHoyr13RJtg6YTT3yZzqGdKYrb+3sCZavVz4nZfzNF7rA2ZpKnB1eiMtW5Q3+c5HSRJXRFbzdXAqTCnArUdDZtUipJjPRdswQS8rHjssO/18HGV14pZGJ5i0/EpsXX+qfEgJ0+kWx6hDv1p7plQxHVOwvC5k0zLmIejymAbo8jKY+kMgVn6KBoRfeBdKH51btwhfDVx6V8YNgvze8FixLEC94R9shdoNC92EyIRjMkI8OdttrdZsFVoBwf2Zs/0gPXvxE9IukhRqENnJZfL/b1nDJmLNxfZCFyvAeCBBUwPEATj33I8XAcWZ5c4ybQq7VlptAZ+8PLfERsgbs/HKTrL3Go6OIGru/b/C/Bi03alqm5WZdktF30TbUSwmwMn0Ci3YT+xWpajOb+O0mDuuISYzcgDIGgghmGoxFcnxj1t8jO/JTDVhX46uL3XiD8hHLxy97piGSBld7B2a1aHjUDVbfooa1pwu9XiuUkCB4m8mYgnSrfX3tv4BHX74BBV7pQQwyWqexwxfGWJZxwHVueWpEa0x5VBBcBV67EZaUdorm8HhpgqxMa+l2xzcmxq9KMQU4hNHtqtB38j9bgIRfEwrLuz1FNCSVbxg+RdTi56WZ2fL65k0qUm+GFYac23YgEfsRGQcXvxshsdlDUT3Z+jsqjIS9qa7uDmwe2n0ZCv8gTDQyt2QVmoVcgyA0FaCnN26jevaLnmaLXk6kr+cUugRv9HU4WLJRhUWoUwxpkoYGgM7N0xTIOVdWJiBg5hZn3dKsqLUAY1stcLJmZOrjFOVfUXgs3dzm3ra0grJ85RjfdbrZ4vUWjL+bTxxKnTe0z2uQseRcpEnAwMie6vxUPbZpMYuIQwEqlExjkdGqWJv0oCeGxxpl+NxNHKgcuJ4c9rxgfbqQXIopIMlWuFiZyxGiTBnn37pnirRHFp6ml8s4diSz/0uKB+9wul1zO3WINEYNu5/0Ik+1iT57Jk2Jmgsrq1itBdzH9YK/XwcPJJSZE94Dz8bP5KGaniIzuKMvyzsl9g9/BdNXgpeSgRvV2RpA7yhrQ==
+ configurations :
+  -
+    name : WD Qui bloque
+    internal_properties : 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
+    configuration_id : 5460935743383082239
+    type : 1
+    generation_directory : .\Exe\WD Qui bloque
+    generation_name : WD Qui bloque.exe
+    version :
+     version : VI200031
+     internal_generation_version : 3
+     autoincrement_version : false
+    icon_filename : .\groupe.ico
+    language : 1
+  -
+    name : WD Superviseur Blocages
+    internal_properties : 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
+    configuration_id : 4684426645744757944
+    type : 1
+    generation_directory : .\Exe\WD Superviseur Blocages
+    generation_name : WD Superviseur blocages.exe
+    version :
+     version : VI200031
+     internal_generation_version : 3
+     autoincrement_version : false
+    icon_filename : .\lock.ICO
+    language : 1
+    new_features_help :
+     name : ""
+     internal_properties : CAAAAAgAAABXI2SepTbHo0ufBJ11ilva4ys8cNtYt0rdQwvRjvybZTsyN46XaC7P4Jnm1OG/+zMv32mU1JZwgppY1A==
+ elements :
+  identifier : 0x4ac60240001db63a
+  elements :
+   -
+     name : FEN_SaisieMessage
+     identifier : 0x3e53c4a52627501f
+     internal_properties : CAAAAAgAAADLRzPX1JGZQg2hQO/uqd34t5DyIr0OVjqGrMJSn71ZR6V7hZCJvwX4atTOKurmkgbOVg==
+     physical_name : .\Fen_SaisieMessage.wdw
+     type : 2
+   -
+     name : TEST_TableClient
+     identifier : 0x4d99c1470066b666
+     internal_properties : CAAAAAgAAAAUcny4B3w0N4Akx2JxnZY13Lkr87qke76enu7ti5UH8c8jP1a2Sop/7VdBv0e5QbcBAQ==
+     physical_name : .\TEST_TableClient.wxt
+     type : 17
+     configurations :
+      -
+        configuration_id : 4684426645744757944
+        excluded : true
+   -
+     name : FEN_SupervisionBlocage
+     identifier : 0x4a0acc860005286a
+     internal_properties : CAAAAAgAAACppZH1Mm9HaHcHSvXksfcm9eL4aAfAsC7GbbV27125N4FDOXyTtf/yEAr0zFSMdGSstA==
+     physical_name : .\Fen_SupervisionBlocage.wdw
+     type : 2
+   -
+     name : FEN_FicheClient
+     identifier : 0x3e53c4a3343b501f
+     internal_properties : CAAAAAgAAAC/m5eLOGVNXmnNfDtaaKXQBxYupst8BBpGg39dhKjq5i72Zk/Nc7EkRvDq1l6SbmKqqg==
+     physical_name : .\Fen_FicheClient.wdw
+     type : 2
+     configurations :
+      -
+        configuration_id : 4684426645744757944
+        excluded : true
+   -
+     name : FEN_TableClient
+     identifier : 0x3e53c4a44fa7501f
+     internal_properties : CAAAAAgAAAAlIQ0RrstjfMubzmloZ48myUrEFMcIKb4pdzicISvjJesxM2K/QYN2lI4I8LAg2MgwMA==
+     physical_name : .\Fen_TableClient.wdw
+     type : 2
+     configurations :
+      -
+        configuration_id : 4684426645744757944
+        excluded : true
+   -
+     name : FEN_MotPasse
+     identifier : 0x4a0acc850003252e
+     internal_properties : CAAAAAgAAAB716PnxIGpsr1R8L/e/i1Qk/bCGtscd8HevGDLFibsLJBc4MVZ7zWo2kS+Ovr2gnZe5g==
+     physical_name : .\Fen_MotPasse.wdw
+     type : 2
+   -
+     name : Procedures_globales
+     identifier : 0x3e53c4a860e4501f
+     internal_properties : CAAAAAgAAAD9WdXJ9qMLFCODJkEQAXOiEU6kRKNUsij9xe5u50VJ39HDufwXKWtejLYgmBjIsCDoaA==
+     physical_name : .\Procedures_globales.wdg
+     type : 7
+  other_elements :
+   -
+     physical_name : .\Description.rtf
+   -
+     physical_name : .\Description.gif
+  analysis : .\WD Qui bloque.ana\WD Qui bloque.wda
+  net_assemblies : []
+  uwp_api : []
+  external_components : []
+  internal_components : []
+ report_and_queries_enabled : false
+ common_generation_directory : true
+ languages :
+  - fr-FR
+ wd_style_sheet : ".\\WD Qui bloque.sty\r\n.\\wdkiblok.sty"
+ code_elements :
+  internal_properties : CAAAAAgAAAD+fcP2pE6hN+4USNZmTKx/Atcp4WCw8gIVfAy91upa+u72Mwr4OTihF/PBWb0CTjg8H/fGT3TSnVVG8juC6xXT/u58
+  type_code : 0
+  p_codes :
+   -
+     internal_properties : CAAAAAgAAADU7MzioYil/huvGz1hGPX5PDZqeieUPFUbkmdpJwffKHvD5oFZjUq3YLeNXi6FtINDbYbJ+uFgldXcxkJv2b0mWY6EY8Ox43Sx/ZHVb2xBAMCdTl1fZcg60FqMTTduA2/gcuuGe7jXe/XJAFJjEXjEKNqz/k1AC2YwikXPkwd/+e1HRPJQgsJ4IkDHSSEFt6G5HvlCWUqmzF/W/w3+kbxeorr6Q/KaQ4UTzWwgjAaDLiGcHVgridBlPyJpcZ4lWwJuvD5AWeCrzMtsxJmBsUG9uFvz4DpYvw==
+     code : |1-
+      
+      CONSTANTE
+      	CONFIGURATION_QUIBLOQUE   = "WD Qui Bloque"
+      	CONFIGURATION_SUPERVISEUR = "WD Superviseur Blocages"
+      FIN
+      
+      // Désactive la gestion automatique des erreurs par HFSQL
+      HSurErreur("*",hErrTout,"")
+      
+      // Configuration "WD Qui Bloque" ?
+      SI ProjetInfo(piConfiguration) = CONFIGURATION_QUIBLOQUE ALORS
+      	// Partage des fichiers
+      	HMode(HModeMulti)
+      	
+      	// Sécurités HF
+      	HGereIntégrité(Vrai)
+      	HGereDoublon("*",Vrai)
+      	
+      	// Fichier .REP dans le répertoire de l'exécutable
+      	HGereRep(Vrai)
+      	
+      	// Génération des fichiers au 1er lancement
+      	Hcreationsiinexistant("*")
+      	
+      	// Trigger permettant de mémoriser le 'Time Stamp' (optionnel)
+      	hdecrittrigger("*","HAJOUTE,HMODIFIE","AvantMAJEnreg",hTriggerAvant)
+      	
+      	// Vérifie si aucune info n'est restée mémorisée dans le fichier "VERROU" alors que le déblocage a bien eu lieu (Fermeture anormale de l'application)
+      	CtrlVerrou()
+      FIN
+     type : 196608
+   -
+     type : 196621
+   -
+     type : 196627
+     enabled : false
+  orphans :
+   -
+     name : WD Qui bloque
+     identifier : 0x4ac602400028b6a8
+     code_elements :
+      type_code : 159
+      p_codes : []
+   -
+     name : WD Superviseur Blocages
+     identifier : 0x4ac60240002ab6b7
+     code_elements :
+      type_code : 159
+      p_codes : []
+ code_parameters :
+  internal_properties : CAAAAAgAAACVGQgYbalU7DKC3oH4ItDrjtcTHXXV/EuH8q0IbhyQlw==
+rad :
+ internal_properties : CAAAAAgAAABhIL0UXeZmxDJxY3Xy0Q==
+project_explorer :
+ explorer_type : project
+resources :
+ string_res :
+  identifier : 0x0
+  internal_properties : CAAAAAgAAACm76HWfKGWp33VjXInA4cRlqArlgTTA862QGt72W2ld5Y=
+custom_note :
+ internal_properties : CAAAAAgAAAAd98VSJfHHqE3P0QHwrwdhn7ig8dWBR6valpUTgnAMTVXiDg==
